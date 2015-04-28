@@ -28,7 +28,7 @@ View the [final visualization] (http://nsrivast.github.io/tree-range-viz/), and 
 ##### <a name="initial-inspiration"></a>Inspiration for problem, initial research
 Looking for resources on the ranges of tree species led me quickly to the tree range maps of [Elbert Little] (http://en.wikipedia.org/wiki/Elbert_Luther_Little), a botanist who (in his tenure as the amazingly-titled "Chief Dendrologist" of the USDA Forest Service) aggregated data from various sources to produce a set of tree range maps for 678 tree species of North America. These maps were digitized by the USGS and are available [here] (http://esp.cr.usgs.gov/data/little/) in PDF and shapefile format. An example of a range map for the balsam fir:
 
-![Range map for balsam fir ](/data/tree_ranges/abiebals/abiebals.pdf?raw=true "Range map for balsam fir")
+![Range map for balsam fir ](https://github.com/nsrivast/tree-range-viz/blob/master/data/tree_ranges/abiebals/abiebals.pdf "Range map for balsam fir")
 
 ##### <a name="initial-explore"></a>Explore format and structure of tree data
 Little's tree ranges are represented by shapefiles, a common format in the well-developed field of [Geographic Information Systems (GIS)] (http://en.wikipedia.org/wiki/Geographic_information_system). After downloading and examining the shapefiles, and after some research and deliberation, I decided to convert the shapefiles to the GeoJSON format, for a few reasons: 
