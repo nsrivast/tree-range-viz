@@ -1,0 +1,58 @@
+body {
+	background-color: #404D78;
+	font-family: Tahoma;
+}
+
+#map {
+	width: 680px;
+	height: 600px;
+	float:left;
+}
+
+#info {
+	background-color: #E5E5E5;
+	padding: 10px;
+	margin-right: 10px;
+	width: 300px;
+	height: 580px;
+	float: left;
+}
+
+#infoHeader {
+	font-weight: bold;
+}
+
+#locationPreview {
+	background-color: #CACBD0;
+	padding: 5px;
+	margin-top: 5px;
+	height: 40px;
+	font-size: 14px;
+}
+
+#treeTableDiv {
+	overflow-y: auto;
+	background-color: #CACBD0;
+	padding: 5px;
+	margin-top: 10px;
+	height: 470px;
+	font-size: 14px;
+}
+
+.colorCol {
+	width: 20px;
+}
+
+.help {
+	float:right;
+	background: yellow;
+	font-weight: bold;	
+}
+
+.legend {
+	padding: 5px;
+	background: rgba(255,255,255,1);
+	box-shadow: 0 0 15px rgba(0,0,0,0.5);
+	border-radius: 5px;
+	font-size: 14px;
+}
