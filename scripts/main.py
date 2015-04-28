@@ -54,14 +54,14 @@ def rewrite_js(locs_tag, trees_tag, locs_filter=False):
     
     print("- Saving .js to file")
     fname = locs_tag + ("_" + locs_filter if locs_filter else "") + trees_tag
-    map_js_fname = "viz/data_locs/" + fname + ".js"
+    map_js_fname = "../data_locs/" + fname + ".js"
     geojson.write_to_js(locs_data_withstats, map_js_fname, "locsData", map_vars)
 
 
 if __name__ == "__main__":
     
     # Custom parameters
-    if True:
+    if False:
         rewrite_js("states", "")
         rewrite_js("states", "", "ne")
         rewrite_js("counties", "")
@@ -78,5 +78,5 @@ if __name__ == "__main__":
         rewrite_js("towns", "", "vt")
         rewrite_js("towns", "")
     else:
-        rewrite_js("counties", "", "ma")
+        rewrite_js("towns", "")
         
