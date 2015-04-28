@@ -1,0 +1,9 @@
+abieamab,24.0243
+abiebals,424.398
+abiebrac,0.020617
+abieconc,18.5738
+abiefras,0.414931
+abiegran,28.5588
+abielasi,185.885
+abiemagn,3.33714
+abieproc,3.87752
