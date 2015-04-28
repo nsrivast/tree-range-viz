@@ -21,14 +21,10 @@ View the [final visualization] (http://nsrivast.github.io/tree-range-viz/), and 
 
 5. [Build Visualization] (#build)
 	
-6. [Results] (#results)
-
 ### <a name="initial"></a>Initial Research
 
 ##### <a name="initial-inspiration"></a>Inspiration for problem, initial research
-Looking for resources on the ranges of tree species led me quickly to the tree range maps of [Elbert Little] (http://en.wikipedia.org/wiki/Elbert_Luther_Little), a botanist who (in his tenure as the amazingly-titled "Chief Dendrologist" of the USDA Forest Service) aggregated data from various sources to produce a set of tree range maps for 678 tree species of North America. These maps were digitized by the USGS and are available [here] (http://esp.cr.usgs.gov/data/little/) in PDF and shapefile format. An example of a range map for the balsam fir:
-
-![Range map for balsam fir ](https://github.com/nsrivast/tree-range-viz/blob/master/data/tree_ranges/abiebals/abiebals.pdf "Range map for balsam fir")
+Looking for resources on the ranges of tree species led me quickly to the tree range maps of [Elbert Little] (http://en.wikipedia.org/wiki/Elbert_Luther_Little), a botanist who (in his tenure as the amazingly-titled "Chief Dendrologist" of the USDA Forest Service) aggregated data from various sources to produce a set of tree range maps for 678 tree species of North America. These maps were digitized by the USGS and are available [here] (http://esp.cr.usgs.gov/data/little/) in PDF and shapefile format. [Here's](https://github.com/nsrivast/tree-range-viz/blob/master/data/tree_ranges/abiebals/abiebals.pdf) an example of a range map for the balsam fir:
 
 ##### <a name="initial-explore"></a>Explore format and structure of tree data
 Little's tree ranges are represented by shapefiles, a common format in the well-developed field of [Geographic Information Systems (GIS)] (http://en.wikipedia.org/wiki/Geographic_information_system). After downloading and examining the shapefiles, and after some research and deliberation, I decided to convert the shapefiles to the GeoJSON format, for a few reasons: 
@@ -113,12 +109,4 @@ I wrote code to calculate various metrics of interest in each region (number of 
 
 The most interesting metric I devised attempted to measure how unique each county's tree population was. I calculated a "coverage" metric for each tree species defined as the fraction of total locations in the sample for which that species was present. Then, I calculated the "average coverage" for each location across all the trees it contained. This gave interesting results, in which I could see the geographical uniqueness of the Adirondack and Acadian regions and the southern coastal regions of Connecticut and New York City. However, results were skewed for regions with fewer trees whose average had higher variance.
 
-Wanting to see average coverage somehow normalized by number of trees, I assigned color based on average coverage and lightness/darkness based on number of trees.
-
-### <a name="results"></a>Results
-
-##### US States
-##### US Counties - Northeast
-##### US Counties - California
-##### US Towns - New York
-##### etc.
+Wanting to see average coverage normalized by number of trees, I assigned color based on average coverage and lightness/darkness based on number of trees. This resulting visualization produced the set of graphics described in [this analysis] (http://nsrivast.github.io/tree-range-viz/)
