@@ -9,13 +9,14 @@
 </head>
 
 <body>
-	<div id="info">		
+	<div id="info">
 		<div id="infoHeader">
 			North American Tree Distribution
-			<div class="help">
-				&nbsp; ? &nbsp;
+			<div class="helpButton">
+				<a href="#" onclick="showHelp()">&nbsp; ? &nbsp;</a>
 			</div>
 		</div>
+		<div id="help"></div>
 		<div id="locationPreview">Hover over regions to show data</div>
 		<div id="treeTableDiv">
 			<div id="treeTableHeader">Click on a region for a list of trees</div>
@@ -42,6 +43,25 @@
 			$.getScript("./data_locs/" + region + ".js");
 		  reload_js('./js/viz.js');
 		};
+		
+		function showHelp() {
+			var helpDiv = document.getElementById('help')
+			helpText = "This is a visualization of the distribution of tree species across the US.<br /><br />"
+			helpText += "Regions are colored according to the number and uniqueness of tree species they contain. Darker regions contain more trees, and bluer regions have trees with lower coverage - i.e. trees that are found in fewer locations. <br /><br />"
+			helpText += "Click on a region to display the trees it contains, sorted by coverage. Click on 'show' next to each tree to view that species range on the map. <br /><br />"
+			helpText += "Use the links in the map legend to explore different regions of the country. Make sure to click twice to load regional maps.<br /><br />"
+			helpDiv.innerHTML = helpText;
+			
+			$('#help').append($('<a href="https://github.com/nsrivast/tree-range-viz">See how this was made</a><br /><br />'));
+			$('#help').append($('<a href="#" class="helpButton" onclick="hideHelp()">(close help)</a>'));
+			$('#help').append($('<a href="https://github.com/nsrivast/tree-range-viz">Read an analysis of the results</a><br /><br />'));
+		};
+		
+		function hideHelp() {
+			var helpDiv = document.getElementById('help')
+			helpDiv.innerHTML = "";
+		};
+		
 	</script>
 	
 	</body>

@@ -35,18 +35,24 @@ body {
 	background-color: #CACBD0;
 	padding: 5px;
 	margin-top: 10px;
-	height: 470px;
+	max-height: 470px;
+	font-size: 14px;
+}
+
+.helpButton {
+	float:right;
+	background: yellow;
+	font-weight: bold;	
+}
+
+#help {
+	background-color: yellow;
+	margin-top: 5px;
 	font-size: 14px;
 }
 
 .colorCol {
 	width: 20px;
-}
-
-.help {
-	float:right;
-	background: yellow;
-	font-weight: bold;	
 }
 
 .legend {
