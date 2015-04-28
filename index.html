@@ -1,1 +1,48 @@
-hello
+<!DOCTYPE html>
+<html>
+<head>
+	<title>North American Tree Distribution Visualization</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/leaflet.css" />
+	<link rel="stylesheet" href="./css/main.css" />
+</head>
+
+<body>
+	<div id="info">		
+		<div id="infoHeader">
+			North American Tree Distribution
+			<div class="help">
+				&nbsp; ? &nbsp;
+			</div>
+		</div>
+		<div id="locationPreview">Hover over regions to show data</div>
+		<div id="treeTableDiv">
+			<div id="treeTableHeader">Click on a region for a list of trees</div>
+			<table id="treeTable" class="mytable"></table>
+		</div>		
+	</div>
+	<div id="mapContainer">
+		<div id="map"></div>
+	</div>
+	
+	<script src="./js/leaflet.js"></script>
+	<script src="./js/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="./data_locs/states.js"></script>
+	<script type="text/javascript" src="./js/viz.js"></script>
+	
+	<script type="text/javascript">
+	  function reload_js(src) {
+      $('script[src="./js/viz.js"]').remove();
+      $('<script>').attr('src', src).appendTo('head');
+	  }
+
+		function loadRegion(region) {
+			destroyMap();
+			$.getScript("./data_locs/" + region + ".js");
+		  reload_js('./js/viz.js');
+		};
+	</script>
+	
+	</body>
+</html>
