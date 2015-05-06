@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>USA Tree Distribution Analysis</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/analysis.css" />
+</head>
+
+<body>
+	<div id="bodyContainer">
+		<div id="header">
+			USA Tree Distribution - Analysis
+		</div>
+		
+		<div id="info">
+			<p>This is an analysis of the distribution of tree species across the United States, based on a data visualization constructed using <a href="http://esp.cr.usgs.gov/data/little/">tree range maps</a>.</p>
+			<p><a href="index.html">Launch the visualization</a></p>
+			<p><a href="https://github.com/nsrivast/tree-range-viz">See how it was made</a></p>
+			
+			<p class="infoHeader">Background</p>
+			<p>The visualization was constructed from two data sets: range maps for 678 North American tree species, and location maps for various US geographies (states, counties, townships). It displays which tree species are prevalent in different geographies of the continent.</p>
+			<p>Regions are colored according to the number and uniqueness of tree species they contain:</p>
+			<p>- Darker regions have more trees, lighter regions have fewer trees.</p>
+			<p>- Blue regions have, on average, more unique trees - i.e. trees that are found in fewer regions. Red regions have trees that are more common.</p>
+			
+			<p class="infoHeader">US States</p>
+			<p>In this view we see there are many more tree species east of the Mississippi. Tree species are counted at the geographic center of each location, so for example a state like California is undercounted because its center is in the arid Central Valley.</p>
+			<p>We also see that most tree species are common to the broad plains, forests, and low mountains of the Mississippi Basin. West of the Mississippi we have a fewer number of common species, transitioning gradually across the Great Plains to more unique species past the Rocky Mountains. The extreme northeast and southeast regions of the contiguous United States have more distinct species, particularly Florida which is almost as unique as California.</p>
+			<p>Finally, remember that the states and counties in the east are smaller, so the common-ness metric is not a function of a tree's range area but rather the number of regions it spans.</p>
+			<p><img src="images/states_all.png" alt="states" height="300" width="540" /></p>
+
+			<p class="infoHeader">US Counties</p>
+			<p>Using smaller geographic regions gives us a better look to the underlying physiography. We see the most common trees are found near the Mississippi River and Appalachian Mountains, and that distinct regions west of the Sierra Nevadas and in the Northern Rockies contain a decent number of distinct species.</p>
+			<p><img src="images/counties_all.png" alt="counties" height="300" width="540" /></p>
+
+			<p>Displayed here are the ranges of the <i>American elder</i> and the <i>Pacific willow</i>, two species that exemplify this divide:</p>
+			<p><img src="images/counties_all_American_elder.png" alt="counties with American elder" height="300" width="540" /></p>
+			<p><img src="images/counties_all_Pacific_willow.png" alt="counties with Pacific willow" height="300" width="540" /></p>
+			
+			<p class="infoHeader">California</p>
+			<p>Narrowing our view to the counties of California reveals the sharp divide between the Sierra Nevada mountains, the Central Valley, the coastal ranges, and southeast deserts.</p>
+			<p><img src="images/counties_CA.png" alt="counties California" height="300" width="300" /></p>
+			<p>Here we see the range of the <i>Pacific dogwood</i>.</p>
+			<p><img src="images/counties_CA_Pacific_dogwood.png" alt="counties California with Pacific dogwood" height="300" width="300" /></p>
+			<p>Here we see the range of the <i>Mohave yucca</i>.</p>
+			<p><img src="images/counties_CA_Mohave_yucca.png" alt="counties California with Mohave yucca" height="300" width="300" /></p>
+			
+			
+		</div>
+	</div>
+</body>
+</html>

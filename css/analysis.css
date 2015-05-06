@@ -1,0 +1,28 @@
+body {
+	background-color: #404D78;
+	font-family: Tahoma;
+}
+
+#bodyContainer {
+	background-color: #E5E5E5;
+	padding: 10px;
+	margin: 10px;
+}
+
+#header {
+	font-weight: bold;
+	font-size: 24px;
+	padding: 5px;
+	margin: 5px;
+}
+
+p {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.infoHeader {
+	margin-top: 30px;
+	font-size: 18px;
+}
+

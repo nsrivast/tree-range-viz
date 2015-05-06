@@ -1,4 +1,4 @@
-// === Initialize map with tile layer, legend, default view		
+// === Initialize map with default location and zoom, tile layer
 
 var map = L.map('map', { zoomControl: false }).setView([mapLat, mapLng], mapZoom);
 
@@ -10,53 +10,38 @@ L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 
 new L.Control.Zoom({ position: 'topleft' }).addTo(map);
 
-function regionLink(linkText, region) {
-	var aElem = document.createElement('a');
-	aElem.setAttribute("href", "#");
-	aElem.appendChild(document.createTextNode(linkText));
-	aElem.setAttribute('onclick', 'loadRegion("' + region + '")');
-	return aElem;
-};
+// === Add legend with regional maps
 
 var legend = L.control({position: 'bottomleft'});
 legend.onAdd = function (map) {
 	var div = L.DomUtil.create('div', 'legend');
 	div.innerHTML = '<b>Regional Maps</b> (click twice to load)<br/>';
-	div.appendChild(document.createTextNode("State: "));	
-	div.appendChild(regionLink('all', 'states'));
-	div.appendChild(document.createElement('div'));
+	
+	var regionData = [
+		['State', [['all', 'states']]],
+		['County', [['all', 'counties'], ['north-east', 'counties_ne'], ['mid-atl', 'counties_ma'], ['CA', 'counties_ca'], ['NY', 'counties_ny']]],
+		['Town', [['CT', 'towns_ct'], ['MA', 'towns_ma'], ['ME', 'towns_me'], ['NH', 'towns_nh'], ['NY', 'towns_ny'], ['RI', 'towns_ri'], ['VT', 'towns_vt']]]
+	]
+	
+	for(var i = 0; i < regionData.length; i++) {
+		var regionType = regionData[i][0]
+		var regionLinks = regionData[i][1]
+		
+		div.appendChild(document.createTextNode(regionType + ': '));	
+		
+		for(var j = 0; j < regionLinks.length; j++) {
+			var regionLink = document.createElement('a');
+			regionLink.setAttribute("href", "#");
+			regionLink.appendChild(document.createTextNode(regionLinks[j][0]));
+			regionLink.setAttribute('onclick', 'loadRegion("' + regionLinks[j][1] + '")');
+			
+			div.appendChild(regionLink);
+			div.appendChild(document.createTextNode(" "));
+		}
 
-	div.appendChild(document.createTextNode("County: "));	
-	div.appendChild(regionLink('all', 'counties'));
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('north-east', 'counties_ne'));	
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('mid-atl', 'counties_ma'));	
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('CA', 'counties_ca'));	
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('NY', 'counties_ny'));	
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(document.createElement('div'));
+		div.appendChild(document.createElement('div'));
+	}
 
-	div.appendChild(document.createTextNode("Town: "));	
-	div.appendChild(regionLink('CT', 'towns_ct'));
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('MA', 'towns_ma'));
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('ME', 'towns_me'));
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('NH', 'towns_nh'));
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('NY', 'towns_ny'));
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('RI', 'towns_ri'));
-	div.appendChild(document.createTextNode(" "));	
-	div.appendChild(regionLink('VT', 'towns_vt'));
-	
-	
-//	var regions = ["states", "states_ne", "counties", "counties_ne", "counties_ca", "counties_ma", "counties_ne", "counties_ny", "towns_ct", "towns_ma", "towns_me", "towns_nh", "towns_ny", "towns_ri", "towns_vt"]
-	
 	return div;
 };
 legend.addTo(map);
@@ -67,7 +52,7 @@ function populateTable(p) {
 	var treeTable = document.getElementById('treeTable');
 	var newTable = treeTable.cloneNode();
 	var treeData = p.TreeTable;
-			
+	
 	for(var i = 0; i < treeData.length; i++){
     var tr = document.createElement('tr');
     

@@ -39,16 +39,21 @@ body {
 	font-size: 14px;
 }
 
+#help {
+	display: none;
+	background-color: yellow;
+	padding: 3px;
+	font-size: 14px;
+}
+
+#help p {
+	padding: 2px;
+}
+
 .helpButton {
 	float:right;
 	background: yellow;
 	font-weight: bold;	
-}
-
-#help {
-	background-color: yellow;
-	margin-top: 5px;
-	font-size: 14px;
 }
 
 .colorCol {
