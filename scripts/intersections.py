@@ -1,6 +1,6 @@
 # INTERSECTIONS
 #
-# calculates intersections between tree ranges and geographic areas (states, counties, townships)
+# calculates intersections between tree ranges and geographic areas
 
 import pdb
 import locations

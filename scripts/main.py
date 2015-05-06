@@ -43,10 +43,6 @@ def rewrite_js(locs_tag, trees_tag, locs_filter=False):
     locs_data_withstats = stats.add_stats_to_locs(locs_data, all_stats)
     map_vars = map_settings.map_vars(locs_tag, locs_filter)
     
-#    locs_by_n_trees = [(loc, loc_stat['n_trees']) for loc, loc_stat in all_stats['locs_stats'].items()]
-#    locs_to_remove = [ loc for loc, n_trees in filter(lambda x: x[1] < 25, locs_by_n_trees)]
-#    pdb.set_trace()
-    
     print("- Saving .js to file")
     fname = locs_tag + ("_" + locs_filter if locs_filter else "") + trees_tag
     map_js_fname = "../gh-pages/data_locs/" + fname + ".js"

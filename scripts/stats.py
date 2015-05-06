@@ -1,6 +1,6 @@
 # STATS
 #
-# calculates statistics on intersection data
+# calculates statistics on intersection data, such as coverage fractions
 
 import pdb
 import intersections
