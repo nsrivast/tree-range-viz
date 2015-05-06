@@ -1,15 +1,10 @@
 ## Tree Range Visualization
 
-### Summary
-The goal of this project was to create a data exploration tool to examine the distribution of tree species across North America. I wanted an easy way to identify which trees are prevalent in different locations and geographies of the continent, without having to search through Wikipedia:Flora pages for nearby parks or cities. I also wanted to understand the range of various tree species and tree types.
+In preparation for a series of section hikes of the Appalachian Trail, I wanted to familiarize myself with the tree species I would encounter along the way. I found resources listing plants common to specific regions, such as Wikipedia pages for local parks and forests, but no central resource that answered the question: which trees are prevalent in a given area of the country?
 
-### Background
-In preparation for a series of section hikes of the Appalachian Trail, I wanted to familiarize myself with the most common tree species I would encounter. I found online resources on plants common to specific regions, such as local parks and forests, but no central resource that answered the question: which trees are prevalent in a given area of the country?
+The goal of this project was to create a data visualization to explore and examine the distribution of tree species across North America.
 
-### Result
-View the [final visualization] (http://nsrivast.github.io/tree-range-viz/), and read [an analysis of the results] (http://nsrivast.github.io/tree-range-viz/). The rest of this README explains how I built the tool, the analysis and design decisions I made along the way, and the data formats and libraries I encountered (shapefiles, geoJSON, Shapely for Python, Leaflet).
-
-### Outline
+Launch the [data visualization] (http://nsrivast.github.io/tree-range-viz/), or read [an analysis of the results] (http://nsrivast.github.io/tree-range-viz/analysis.html). The rest of this README explains how I built the tool, the data formats and libraries I used (shapefiles, geoJSON, Shapely for Python, Leaflet), and the analysis and design choices I made along the way. 
 
 1. [Initial Research] (#initial)
 

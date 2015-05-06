@@ -12,6 +12,7 @@ import map_settings
 UNIQIDS_TO_FILTER = ['Cecil (015)', "Barnstable (001)", "None, CT", "CHILMARK, MA", "Atlantic Beach (282043), NY", "Island Park (282021), NY", "PORTSMOUTH, RI", 'EDGARTOWN, MA', 'WELLFLEET, MA', 'NAHANT, MA', 'CHATHAM, MA', 'BOSTON, MA', 'GOSNOLD, MA', 'DUXBURY, MA', 'SCITUATE, MA', 'YARMOUTH, MA', 'HARWICH, MA', 'SALEM, MA', 'MARBLEHEAD, MA', 'OAK BLUFFS, MA', 'BARNSTABLE, MA', 'WEYMOUTH, MA', 'TISBURY, MA', 'HINGHAM, MA', 'NEWBURYPORT, MA', 'GLOUCESTER, MA', 'MANCHESTER, MA']
 UNIQIDS_TO_FILTER += ['IsleAuHaut, ME', 'VinalHaven, ME', 'SwansIsland, ME', 'Breman, ME', 'MatinicusIslePlt, ME', 'NorthHaven, ME', 'WinterHarbor, ME', 'StGeorge, ME', 'CranberryIsles, ME', 'Arrowsic, ME', 'MonheganPlt, ME', 'Friendship, ME', 'Southport, ME', 'BoothbayHarbor, ME', 'Beals, ME', 'Cushing, ME', 'SouthBristol, ME', 'DeerIsle, ME', 'Harrington, ME', 'Cutler, ME', 'Kittery, ME', 'WestBath, ME', 'Frenchboro, ME']
 UNIQIDS_TO_FILTER += ['Ocean Beach (472803), NY', 'Saltaire (472805), NY', 'Manor Haven (282221), NY', 'Manhattan (620000), NY', 'Kings (610000), NY', 'Hewlett Harbor (282017), NY', 'Long Beach (281000), NY', 'Brookhaven (472200), NY', 'Bronx (600000), NY', 'Hewlett Neck (282019), NY', 'Westhamp Beach (473607), NY', 'Quogue (473603), NY', 'Baxter Estates (282201), NY', 'Poquott (472209), NY', 'Croton-On-Hud (552203), NY']
+UNIQIDS_TO_FILTER += ['Upper Nyack (392001), NY', 'Henderson (223600), NY', 'Waddington (408201), NY', 'Alexandria Bay (222201), NY', 'Morristown (406001), NY', 'Clayton (223200), NY', 'Barker (293801), NY', 'Huron (542600), NY', 'Fair Haven (55601), NY', 'Wilson (294201), NY', 'Waddington (408200), NY', 'Somerset (293800), NY', 'Ogdensburg (401200), NY', 'Cape Vincent (222801), NY', 'Sodus Point (544203), NY', 'Louisville (405200), NY', 'Clayton (223201), NY', 'Massena (405800), NY']
 
 def filter_out_uniqids(locs_data, locs_trees, uniqids):
     ''' Removes locations by UNIQID from data files and intersection results '''
@@ -36,12 +37,6 @@ def rewrite_js(locs_tag, trees_tag, locs_filter=False):
     trees_locs, locs_trees = intersections.calc_or_load_intersections(locs_tag, trees_tag, locs_filter)
     locs_data, locs_trees = filter_out_uniqids(locs_data, locs_trees, UNIQIDS_TO_FILTER)
     
-    # ma
-#    print("- Filtering out low-tree regions")
-#    all_stats = stats.calc_stats(trees_locs, locs_trees)
-#    locs_by_n_trees = [(loc, loc_stat['n_trees']) for loc, loc_stat in all_stats['locs_stats'].items()]
-#    locs_to_remove = [ loc for loc, n_trees in filter(lambda x: x[1] <= 5, locs_by_n_trees)]
-#    locs_data, locs_trees = filter_out_uniqids(locs_data, locs_trees, locs_to_remove)
 
     print("- Calculating stats and map parameters, creating .js data")
     all_stats = stats.calc_stats(trees_locs, locs_trees)
@@ -49,12 +44,12 @@ def rewrite_js(locs_tag, trees_tag, locs_filter=False):
     map_vars = map_settings.map_vars(locs_tag, locs_filter)
     
 #    locs_by_n_trees = [(loc, loc_stat['n_trees']) for loc, loc_stat in all_stats['locs_stats'].items()]
-#    locs_to_remove = [ loc for loc, n_trees in filter(lambda x: x[1] < 5, locs_by_n_trees)]
+#    locs_to_remove = [ loc for loc, n_trees in filter(lambda x: x[1] < 25, locs_by_n_trees)]
 #    pdb.set_trace()
     
     print("- Saving .js to file")
     fname = locs_tag + ("_" + locs_filter if locs_filter else "") + trees_tag
-    map_js_fname = "../data_locs/" + fname + ".js"
+    map_js_fname = "../gh-pages/data_locs/" + fname + ".js"
     geojson.write_to_js(locs_data_withstats, map_js_fname, "locsData", map_vars)
 
 
@@ -78,5 +73,5 @@ if __name__ == "__main__":
         rewrite_js("towns", "", "vt")
         rewrite_js("towns", "")
     else:
-        rewrite_js("towns", "")
+        rewrite_js("towns", "", "ny")
         
