@@ -2,7 +2,7 @@
 
 In preparation for a series of section hikes of the Appalachian Trail, I wanted to familiarize myself with the tree species I would encounter along the way. I found resources listing plants common to specific regions, such as Wikipedia pages for local parks and forests, but no central resource that answered the question: which trees are prevalent in a given area of the country?
 
-The goal of this project was to create a data visualization to explore and examine the distribution of tree species across North America.
+The goal of this project was to create a data visualization to explore and examine the distribution of tree species across the US.
 
 Launch the [visualization] (http://nsrivast.github.io/tree-range-viz/), or read [an analysis of the results] (http://nsrivast.github.io/tree-range-viz/analysis.html). The rest of this README explains how I built the visualization, the data formats and libraries I used (shapefiles, geoJSON, Shapely for Python, Leaflet), and the analysis and design choices I made along the way. 
 
@@ -37,20 +37,20 @@ The converted GeoJSON files looked like this, excluding some extraneous fields:
 {
   "type": "FeatureCollection",
   "features": [
-	  {
-			"type": "Feature",
-			"properties": {
-				"AREA" : 425.2352,
-				"PERIMETER" : 9474.2483,
-				"CODE" : 1,
-			},
-			"geometry" : {
-				"type" : "Polygon",
-				"coordinates" : [ [ [-121.61, 36.21], [-121.83, 36.83], ... ] ]
-			}
-		},
-		...
-	]
+    {
+      "type": "Feature",
+      "properties": {
+        "AREA" : 425.2352,
+        "PERIMETER" : 9474.2483,
+        "CODE" : 1,
+      },
+      "geometry" : {
+        "type" : "Polygon",
+        "coordinates" : [ [ [-121.61, 36.21], [-121.83, 36.83], ... ] ]
+      }
+    },
+    ...
+  ]
 }
 ```
 
@@ -69,7 +69,7 @@ I now had enough information to plan out the rest of the project. After download
 ### <a name="data"></a>Data Acquisition and Parsing
 This step involved downloading all 678 tree range shapefiles and the thousands of location shapefiles, converting them to GeoJSON format, and checking a few visually to make sure the converted GeoJSON regions were sensible. 
 
-I included in this repository the converted location GeoJSON files for states and counties, and for towns in 7 northeast states. I also included the raw data for only the first 10 tree species alphabetically. All of this can be found in the [data folder] (/data).
+I included in this repository the converted location GeoJSON files for states and counties, and for towns in 7 northeast states. I also included the raw data for only the first 10 tree species alphabetically due to file size. All of these can be found in the [data folder] (/data).
 
 ### <a name="intersection"></a>Intersection Calculations
 
@@ -98,11 +98,11 @@ The important code is located in the [scripts folder] (/scripts/) and contains t
 ### <a name="explore"></a>Explore Results
 
 ##### Examine data and think on visualization metrics
-For the 678 tree species, the 50 states, ~3000 counties, and ~3500 northeast towns, I had a list of all tree species contained in each region and all regions covered by each species. The next step was to consider how to best represent and visualize the information.
+For the 678 tree species, 50 states, ~3000 counties, and ~3500 northeast towns, I had a list of all tree species contained in each region and all regions covered by each species. The next step was to consider how to best represent and visualize the information.
 
-Starting from the tree data, it would be somewhat interesting to see how many regions and what total area each tree covered, although this information was already given directly in the tree range maps. I couldn't think of many fruitful comparisons to be made between trees besides size of coverage area, since metrics like shape, directionality, or region of coverage were probably better examined per-location than per-tree. Here are the trees with largest and smallest ranges:
+Starting from the tree data, it would be somewhat interesting to see how many regions and what total area each tree covered, although this information was already given directly in the tree range maps. I couldn't think of many fruitful comparisons to be made between trees besides size of coverage area, since metrics like shape, directionality, or region of coverage were probably better examined per-location than per-tree. For interest, here are the trees with largest and smallest reported ranges:
 
-Rank | Largest | Smallest
+Rank | Largest Range | Smallest Range
 :---:|:--------|:---------
 1 | common juniper (_Juniperus communis_) | black calabash (_Amphitecna latifolia_)
 2 | quaking aspen (_Populus tremuloides_) | Florida cupania (_Cupania glabra_)
@@ -117,7 +117,7 @@ Rank | Largest | Smallest
 
 More interesting was to start from the location data, which could show metrics as layers on top of the geographical data. I also thought some measure of how unique the location's species were might be interesting, especially relative to nearby regions. Could we correlate the country's geophysical regions and boundaries to features of the tree range data?
 
-Lastly, for a more in-depth look at the universe of tree types, I could overlay additional data such as broader taxonomic classifications or specific features - e.g. deciduous versus evergreen. This would require additional data sources, such as scraping some public tree [database] (http://www.fs.fed.us/database/feis/plants/tree/) organized by species.
+Lastly, for a more in-depth look at the universe of tree types, I could overlay additional data such as broader taxonomic classifications or specific features - e.g. deciduous versus evergreen. This would require additional data sources, such as scraping some public tree [database] (http://www.fs.fed.us/database/feis/plants/tree/).
 
 I decided to play around with some basic visualizations to explore the data and decide what metrics might be most useful to display.
 
@@ -129,6 +129,14 @@ There are [lots] (http://gis.stackexchange.com/questions/8032/how-do-various-jav
 ##### Build basic visualization, experiment with various metrics
 I calculated various metrics of interest in each region (number of trees, distribution of trees, uniqueness of trees) and started looking at different regions of the country with states and counties colored by each metric. It was immediately clear that state-level location data was too coarse for informative results; California, for example, registered very few tree species only because its centroid was in the arboreally-sparse Central Valley. County-level data was more interesting, although looking at the full country was overwhelming. I focused on counties in different regions, such as the northeast states whose geography I had a better intuition for.
 
-The most interesting metric I created tried to measure how unique each county's tree population was. I calculated a "coverage" metric for each tree species defined as the fraction of total locations in the sample for which the tree was present. Then, I calculated the "average coverage" for each location across all the trees it contained. This gave interesting results, in which I could see the geographical uniqueness of the Adirondack and Acadian regions and the southern coastal regions of Connecticut and New York City. However, results were skewed for regions with fewer trees, such as Nevada whose two tree species were relatively rare and gave the state a strong uniqueness score.
+The most interesting metric I created tried to measure how unique each county's tree population was. I calculated a "coverage" metric for each tree species defined as the fraction of total locations in the sample for which the tree was present. Then, I calculated the "average coverage" for each location across all the trees it contained. In other words:
 
-I wanted to see my average coverage somewhow normalized by number of tree species, so I assigned each map region a hue (color) based on its average coverage and a saturation (lightness/darkness) based on its number of species. The [resulting visualization] (http://nsrivast.github.io/tree-range-viz/) produced the set of graphics described in [this analysis] (http://nsrivast.github.io/tree-range-viz/analysis.html)
+For a given tree species:
+> coverage = (# of regions covered by the tree range) / (# of total regions)
+
+For a given region:
+> average coverage = mean coverage of all trees contained by the region
+
+This gave interesting results, in which I could see the geographical uniqueness of the Adirondack and Acadian regions and the southern coastal regions of Connecticut and New York City. However, results were skewed for regions with fewer trees, such as Nevada whose two tree species were relatively rare and gave the state a strong uniqueness score.
+
+I wanted to see my average coverage somewhow normalized by number of tree species, so I assigned each map region a hue (color) based on its average coverage and a saturation (lightness/darkness) based on its number of species. The [resulting visualization] (http://nsrivast.github.io/tree-range-viz/) produced the set of graphics described in [this analysis] (http://nsrivast.github.io/tree-range-viz/analysis.html).
