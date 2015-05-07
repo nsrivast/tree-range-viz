@@ -10,17 +10,17 @@ L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 
 new L.Control.Zoom({ position: 'topleft' }).addTo(map);
 
-// === Add legend with regional maps
+// === Add legend box with regional maps
 
 var legend = L.control({position: 'bottomleft'});
 legend.onAdd = function (map) {
 	var div = L.DomUtil.create('div', 'legend');
-	div.innerHTML = '<b>Regional Maps</b> (click twice to load)<br/>';
+	div.innerHTML = '<b>Regional Maps</b><br/>';
 	
 	var regionData = [
 		['State', [['all', 'states']]],
-		['County', [['all', 'counties'], ['north-east', 'counties_ne'], ['mid-atl', 'counties_ma'], ['CA', 'counties_ca'], ['NY', 'counties_ny']]],
-		['Town', [['CT', 'towns_ct'], ['MA', 'towns_ma'], ['ME', 'towns_me'], ['NH', 'towns_nh'], ['NY', 'towns_ny'], ['RI', 'towns_ri'], ['VT', 'towns_vt']]]
+		['County', [['all', 'counties'], ['CA', 'counties_ca']]],
+		['Town', [['NY', 'towns_ny'], ['ME', 'towns_me'], ['NH', 'towns_nh'], ['CT', 'towns_ct'], ['MA', 'towns_ma'], ['VT', 'towns_vt']]]
 	]
 	
 	for(var i = 0; i < regionData.length; i++) {
@@ -45,6 +45,18 @@ legend.onAdd = function (map) {
 	return div;
 };
 legend.addTo(map);
+
+// === Add info box with region information
+
+var infoBox = L.control({position: 'topright'});
+infoBox.onAdd = function (map) {
+	var div = L.DomUtil.create('div', 'legend');
+	div.setAttribute('id', 'infoBox');
+	div.innerHTML = '';
+	return div;
+};
+infoBox.addTo(map);
+
 
 // === Tree Table
 	
@@ -101,7 +113,6 @@ function populateTable(p) {
 	for(var i = 0; i < treeData.length; i++){
 		document.getElementById("hideLink" + treeData[i][2]).style.display = 'none';
 	}
-	
 }
 
 function clearTable() {
@@ -163,18 +174,20 @@ function selectFeature(e) {
 	}
 }
 
-var locPrev = document.getElementById("locationPreview");
+var locPrev = document.getElementById("infoBox");
 function onEachFeature(feature, layer) {
 	layer.on({
 		mouseover: function(e) {
 			locPrev.innerHTML = e.target.feature.properties.Description;
 		},
 		mouseout: function(e) {
-			locPrev.innerHTML = 'Hover over regions to show data'
+			locPrev.innerHTML = ''
 		},
 		click: selectFeature
 	});
 }
+
+// === Add location data to map
 
 var geojson;
 geojson = L.geoJson(locsData, {

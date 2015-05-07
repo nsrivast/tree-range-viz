@@ -6,6 +6,8 @@ body {
 #bodyContainer {
 	background-color: #E5E5E5;
 	padding: 10px;
+	padding-left: 40px;
+	padding-right: 40px;
 	margin: 10px;
 }
 
@@ -24,5 +26,9 @@ p {
 .infoHeader {
 	margin-top: 30px;
 	font-size: 18px;
+}
+
+.infoHeader a {
+	font-size: 12px;
 }
 

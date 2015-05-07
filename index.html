@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>USA Tree Distribution Visualization</title>
+	<title>US Tree Distribution Visualization</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/leaflet.css" />
@@ -11,21 +11,27 @@
 <body>
 	<div id="info">
 		<div id="infoHeader">
-			USA Tree Distribution
+			US Tree Distribution
 			<div class="helpButton">
 				<a id="helpButton" onclick="showHelp()">&nbsp; ? &nbsp;</a>
 			</div>
 		</div>
 		<div id="help">
 			<p>This is a visualization of the distribution of tree species across the United States.</p>
-			<p>Regions are colored according to the number and uniqueness of tree species they contain. Darker regions have more trees, and bluer regions have more unique trees (trees that are found in fewer locations).</p>
-			<p>Click on a region to display the trees it contains, sorted by uniqueness. Click on 'show' next to each tree to view that species range on the map.</p>
-			<p>Use the links in the map legend to explore different regions of the country. Make sure to click twice to load these regional maps.</p>
+			<p>Regions are colored according to the <b>number</b> and <b>uniqueness</b> of tree species they contain.</p>
+			
+			fewer &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; more<br />
+			species &nbsp; &nbsp; &nbsp; &nbsp; species<br />
+			<i style="background:#d9d0ff">&nbsp; &nbsp;</i><i style="background:#c7b9ff">&nbsp; &nbsp;</i><i style="background:#b4a2ff">&nbsp; &nbsp;</i><i style="background:#a18bff">&nbsp; &nbsp;</i><i style="background:#8f73ff">&nbsp; &nbsp;</i><i style="background:#7c5cff">&nbsp; &nbsp;</i><i style="background:#6945ff">&nbsp; &nbsp;</i><i style="background:#572eff">&nbsp; &nbsp;</i><i style="background:#4417ff">&nbsp; &nbsp;</i><i style="background:#3200ff">&nbsp; &nbsp;</i>&nbsp; mostly unique species<br/>
+			<i style="background:#fed0ff">&nbsp; &nbsp;</i><i style="background:#fdb9ff">&nbsp; &nbsp;</i><i style="background:#fda2ff">&nbsp; &nbsp;</i><i style="background:#fc8bff">&nbsp; &nbsp;</i><i style="background:#fc73ff">&nbsp; &nbsp;</i><i style="background:#fb5cff">&nbsp; &nbsp;</i><i style="background:#fb45ff">&nbsp; &nbsp;</i><i style="background:#fa2eff">&nbsp; &nbsp;</i><i style="background:#fa17ff">&nbsp; &nbsp;</i><i style="background:#f900ff">&nbsp; &nbsp;</i>&nbsp; average uniqueness<br/>
+			<i style="background:#ffd0db">&nbsp; &nbsp;</i><i style="background:#ffb9c9">&nbsp; &nbsp;</i><i style="background:#ffa2b8">&nbsp; &nbsp;</i><i style="background:#ff8ba6">&nbsp; &nbsp;</i><i style="background:#ff7394">&nbsp; &nbsp;</i><i style="background:#ff5c83">&nbsp; &nbsp;</i><i style="background:#ff4571">&nbsp; &nbsp;</i><i style="background:#ff2e5f">&nbsp; &nbsp;</i><i style="background:#ff174d">&nbsp; &nbsp;</i><i style="background:#ff003c">&nbsp; &nbsp;</i>&nbsp; mostly common species<br/>
+	
+			<p>Click on a region to list the trees it contains, sorted by uniqueness. Click on <b>show</b> next to each tree to view that species range on the map.</p>
+			<p>Use the links in the map legend to explore different regions of the country.</p>
 			<p><a href="https://github.com/nsrivast/tree-range-viz">See how this visualization was made</a></p>
 			<p><a href="analysis.html">Read an analysis of the results</a></p>
 		</div>
 		
-		<div id="locationPreview">Hover over regions to show data</div>
 		<div id="treeTableDiv">
 			<div id="treeTableHeader">Click on a region for a list of trees</div>
 			<table id="treeTable" class="mytable"></table>

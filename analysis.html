@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>USA Tree Distribution Analysis</title>
+	<title>US Tree Distribution Analysis</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/analysis.css" />
@@ -9,44 +9,177 @@
 
 <body>
 	<div id="bodyContainer">
+		<a name="top"></a>
 		<div id="header">
-			USA Tree Distribution - Analysis
+			US Tree Distribution - Analysis
 		</div>
 		
 		<div id="info">
-			<p>This is an analysis of the distribution of tree species across the United States, based on a data visualization constructed using <a href="http://esp.cr.usgs.gov/data/little/">tree range maps</a>.</p>
-			<p><a href="index.html">Launch the visualization</a></p>
-			<p><a href="https://github.com/nsrivast/tree-range-viz">See how it was made</a></p>
+			<p>This is an analysis of US geographies based on the distribution of North American tree species, based on <a href="index.html">this data visualization</a> whose construction is detailed <a href="https://github.com/nsrivast/tree-range-viz">here</a>.</p>
 			
-			<p class="infoHeader">Background</p>
-			<p>The visualization was constructed from two data sets: range maps for 678 North American tree species, and location maps for various US geographies (states, counties, townships). It displays which tree species are prevalent in different geographies of the continent.</p>
+			<p>
+				<a href="#background">Background</a> | 
+				<a href="#us_states">US States</a> | 
+				<a href="#us_counties">US Counties</a> | 
+				<a href="#california">California</a> | 
+				<a href="#new_york">New York</a> | 
+				<a href="#maine">Other Northeast</a>
+			</p>
+			
+			<hr>
+
+			<a name="background"></a>
+			<p class="infoHeader">Background <a href="#top">(top)</a></p>
+
+			<p>The visualization was constructed from two data sets: range maps for 678 North American tree species, and location maps for various US geographies (states, counties, townships). The visualization displays which tree species are prevalent in different geographies of the continent.</p>
 			<p>Regions are colored according to the number and uniqueness of tree species they contain:</p>
 			<p>- Darker regions have more trees, lighter regions have fewer trees.</p>
-			<p>- Blue regions have, on average, more unique trees - i.e. trees that are found in fewer regions. Red regions have trees that are more common.</p>
+			<p>- Blue regions have, on average, more unique trees (trees that are found in fewer regions). Red regions have trees that are more common.</p>
 			
-			<p class="infoHeader">US States</p>
-			<p>In this view we see there are many more tree species east of the Mississippi. Tree species are counted at the geographic center of each location, so for example a state like California is undercounted because its center is in the arid Central Valley.</p>
-			<p>We also see that most tree species are common to the broad plains, forests, and low mountains of the Mississippi Basin. West of the Mississippi we have a fewer number of common species, transitioning gradually across the Great Plains to more unique species past the Rocky Mountains. The extreme northeast and southeast regions of the contiguous United States have more distinct species, particularly Florida which is almost as unique as California.</p>
-			<p>Finally, remember that the states and counties in the east are smaller, so the common-ness metric is not a function of a tree's range area but rather the number of regions it spans.</p>
-			<p><img src="images/states_all.png" alt="states" height="300" width="540" /></p>
+			<p>
+				fewer &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; more<br />
+				species &nbsp; &nbsp; &nbsp; &nbsp; species<br />
+				<i style="background:#d9d0ff">&nbsp; &nbsp;</i><i style="background:#c7b9ff">&nbsp; &nbsp;</i><i style="background:#b4a2ff">&nbsp; &nbsp;</i><i style="background:#a18bff">&nbsp; &nbsp;</i><i style="background:#8f73ff">&nbsp; &nbsp;</i><i style="background:#7c5cff">&nbsp; &nbsp;</i><i style="background:#6945ff">&nbsp; &nbsp;</i><i style="background:#572eff">&nbsp; &nbsp;</i><i style="background:#4417ff">&nbsp; &nbsp;</i><i style="background:#3200ff">&nbsp; &nbsp;</i>&nbsp; mostly unique species<br/>
+				<i style="background:#fed0ff">&nbsp; &nbsp;</i><i style="background:#fdb9ff">&nbsp; &nbsp;</i><i style="background:#fda2ff">&nbsp; &nbsp;</i><i style="background:#fc8bff">&nbsp; &nbsp;</i><i style="background:#fc73ff">&nbsp; &nbsp;</i><i style="background:#fb5cff">&nbsp; &nbsp;</i><i style="background:#fb45ff">&nbsp; &nbsp;</i><i style="background:#fa2eff">&nbsp; &nbsp;</i><i style="background:#fa17ff">&nbsp; &nbsp;</i><i style="background:#f900ff">&nbsp; &nbsp;</i>&nbsp; average uniqueness<br/>
+				<i style="background:#ffd0db">&nbsp; &nbsp;</i><i style="background:#ffb9c9">&nbsp; &nbsp;</i><i style="background:#ffa2b8">&nbsp; &nbsp;</i><i style="background:#ff8ba6">&nbsp; &nbsp;</i><i style="background:#ff7394">&nbsp; &nbsp;</i><i style="background:#ff5c83">&nbsp; &nbsp;</i><i style="background:#ff4571">&nbsp; &nbsp;</i><i style="background:#ff2e5f">&nbsp; &nbsp;</i><i style="background:#ff174d">&nbsp; &nbsp;</i><i style="background:#ff003c">&nbsp; &nbsp;</i>&nbsp; mostly common species<br/>
+			</p>
+			
+			<hr>
 
-			<p class="infoHeader">US Counties</p>
-			<p>Using smaller geographic regions gives us a better look to the underlying physiography. We see the most common trees are found near the Mississippi River and Appalachian Mountains, and that distinct regions west of the Sierra Nevadas and in the Northern Rockies contain a decent number of distinct species.</p>
-			<p><img src="images/counties_all.png" alt="counties" height="300" width="540" /></p>
+			<a name="us_states"></a>
+			<p class="infoHeader">US States <a href="#top">(top)</a></p>
+			<table>
+				<tr>
+					<td valign="top">
+						<p>In this view we see there are many more tree species east of the Mississippi. Tree species are counted at the geographic center of each location, so for example a state like California is undercounted because its center lies in its arid Central Valley.</p>
+						<p>We also see that most tree species are common to the broad plains, forests, and low mountains of the Mississippi Basin. West of the Mississippi we have a fewer number of common species, transitioning gradually across the Great Plains to more unique species past the Rocky Mountains. The extreme northeast and southeast regions of the contiguous United States have more distinct species, particularly Florida which is almost as unique as California.</p>
+						<p>Finally, remember that the states and counties in the east are smaller, and the common-ness metric is not a function of range area but rather the number of regions it spans. So assuming an even distribution of tree range sizes, we should expect eastern states to have more common trees.</p>
+					</td>
+					<td>
+						<p><img src="images/states_all.png" alt="states" height="300" width="540" /></p>
+					</td>
+				</tr>
+			</table>
 
-			<p>Displayed here are the ranges of the <i>American elder</i> and the <i>Pacific willow</i>, two species that exemplify this divide:</p>
-			<p><img src="images/counties_all_American_elder.png" alt="counties with American elder" height="300" width="540" /></p>
-			<p><img src="images/counties_all_Pacific_willow.png" alt="counties with Pacific willow" height="300" width="540" /></p>
+			<hr>
+
+			<a name="us_counties"></a>
+			<p class="infoHeader">US Counties <a href="#top">(top)</a></p>
+			<table>
+				<tr>
+					<td valign="top">
+						<p>Using smaller geographic regions gives us a better look into the underlying physiography. We see the most common trees are found near the Mississippi River and Appalachian Mountains, and that distinct regions west of the Sierra Nevadas and in the Northern Rockies contain a larger number of unique species.</p>
+					</td>
+					<td>
+						<p><img src="images/counties_all.png" alt="counties" height="400" width="720" /></p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<p>Displayed here are the ranges of two species that exemplify this divide: the <i>American elder</i>: </p>
+					</td>
+					<td>
+						<p><img src="images/counties_all_American_elder.png" alt="counties with American elder" height="400" width="720" /></p>
+					</td>
+					<td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<p>And the <i>Pacific willow</i>: </p>
+					</td>
+					<td>
+						<p><img src="images/counties_all_Pacific_willow.png" alt="counties with Pacific willow" height="400" width="720" /></p>
+					</td>
+					<td>
+				</tr>
+			</table>
 			
-			<p class="infoHeader">California</p>
-			<p>Narrowing our view to the counties of California reveals the sharp divide between the Sierra Nevada mountains, the Central Valley, the coastal ranges, and southeast deserts.</p>
-			<p><img src="images/counties_CA.png" alt="counties California" height="300" width="300" /></p>
-			<p>Here we see the range of the <i>Pacific dogwood</i>.</p>
-			<p><img src="images/counties_CA_Pacific_dogwood.png" alt="counties California with Pacific dogwood" height="300" width="300" /></p>
-			<p>Here we see the range of the <i>Mohave yucca</i>.</p>
-			<p><img src="images/counties_CA_Mohave_yucca.png" alt="counties California with Mohave yucca" height="300" width="300" /></p>
+			<hr>
 			
+			<a name="california"></a>
+			<p class="infoHeader">California <a href="#top">(top)</a></p>
 			
+			<table>
+				<tr>
+					<td valign="top">
+						<p>Narrowing our view to the counties of California reveals the sharp divide between the Sierra Nevada mountains, the Central Valley, the coastal ranges, and southeast deserts.</p>
+					</td>
+					<td>
+						<p><img src="images/counties_CA.png" alt="counties California" height="300" width="300" /></p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<p>For example, here we see the range of the <i>Pacific dogwood</i>:</p>
+					</td>
+					<td>
+						<p><img src="images/counties_CA_Pacific_dogwood.png" alt="counties California with Pacific dogwood" height="300" width="300" /></p>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<p>And here the <i>Mohave yucca</i>:</p>
+					</td>
+					<td>
+						<p><img src="images/counties_CA_Mohave_yucca.png" alt="counties California with Mohave yucca" height="300" width="300" /></p>						
+					</td>
+				</tr>
+			</table>
+			
+			<hr>
+			
+			<a name="new_york"></a>
+			<p class="infoHeader">New York <a href="#top">(top)</a></p>
+			
+			<table>
+				<tr>
+					<td valign="top">
+						<p>Data is sparse for Long Island towns.</p>
+						<p>A per-town view of New York lets us see the varied topography of New York. We see many species along the Hudson River and near the lake regions, and deserts in the Allegheny region, the Catskills, and the Adirondacks. One unexpected feature is the vertical strip in the center of the Allegheny Plateau, running straight through Ithaca and the Cayuga Lake valley. Another is the slightly higher number of species along the presumably more temperate Saint Lawrence River.</p>
+						<p>We can also see in the New York view an interesting pattern, opposite to that of California - counties with many tree species also have more unique species, and counties with fewer species have more common species. This implies that the majority of the state is covered by a few common species that thrive everywhere, and a few regions have specialized species. For New York, these regions are the lowlands along the Hudson River and Lake Ontario.</p>
+					</td>
+					<td>
+						<p><img src="images/towns_NY.png" alt="towns New York" height="420" width="500" /></p>						
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<p>One example of a more specialized species is the <i>cucumber tree</i>, or <i>blue magnolia</i>, that grows close to the Great Lakes and down into the center of the Allegheny Plateau.</p>
+					</td>
+					<td>
+						<p><img src="images/towns_NY_cucumber_tree.png" alt="towns New York with cucumber tree" height="420" width="500" /></p>						
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<p>And in the mountainous regions, indeed the prevailing species span the whole state, such as the <i>silver maple</i> and the <i>yellow birch</i>. Of course there are some species that only cover these regions, such as the <i>balsam fir</i> pictured to the right.</p>
+					</td>
+					<td>
+						<p><img src="images/towns_NY_balsam_fir.png" alt="towns New York with balsam fir" height="420" width="500" /></p>						
+					</td>
+				</tr>
+			</table>
+			
+			<hr>
+			
+			<a name="maine"></a>
+			<p class="infoHeader">Other Northeast <a href="#top">(top)</a></p>
+			
+			<table>
+				<tr>
+					<td valign="top">
+						<p>In Maine, New Hampshire, and Vermont, we see similar color patterns as New York, though with less complexity.
+					</td>
+					<td>
+						<p>
+							<img src="images/towns_ME.png" alt="towns Maine" height="300" width="200" />
+							<img src="images/towns_NH.png" alt="towns New Hampshire" height="300" width="200" />
+							<img src="images/towns_VT.png" alt="towns Vermont" height="300" width="200" />
+						</p>
+					</td>
+				</tr>
+			</table>
+
 		</div>
 	</div>
 </body>

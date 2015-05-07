@@ -22,20 +22,12 @@ body {
 	font-weight: bold;
 }
 
-#locationPreview {
-	background-color: #CACBD0;
-	padding: 5px;
-	margin-top: 5px;
-	height: 40px;
-	font-size: 14px;
-}
-
 #treeTableDiv {
 	overflow-y: auto;
 	background-color: #CACBD0;
 	padding: 5px;
 	margin-top: 10px;
-	max-height: 470px;
+	max-height: 540px;
 	font-size: 14px;
 }
 
