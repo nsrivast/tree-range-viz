@@ -1,6 +1,8 @@
 // === Initialize map with default location and zoom, tile layer
 
-var map = L.map('map', { zoomControl: false }).setView([mapLat, mapLng], mapZoom);
+var map = L.map('map', { zoomControl: false });
+var regionLayer;
+var regionData;
 
 L.tileLayer('https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
 	maxZoom: 12,
@@ -33,7 +35,7 @@ legend.onAdd = function (map) {
 			var regionLink = document.createElement('a');
 			regionLink.setAttribute("href", "#");
 			regionLink.appendChild(document.createTextNode(regionLinks[j][0]));
-			regionLink.setAttribute('onclick', 'loadRegion("' + regionLinks[j][1] + '")');
+			regionLink.setAttribute('onclick', 'changeRegion("' + regionLinks[j][1] + '")');
 			
 			div.appendChild(regionLink);
 			div.appendChild(document.createTextNode(" "));
@@ -167,7 +169,7 @@ function selectFeature(e) {
 		populateTable(layer.feature.properties);
 		
 	} else {
-		geojson.resetStyle(e.target);
+		regionLayer.resetStyle(e.target);
 		layer.setStyle(unselectedStyle());
 		treeTableHeader.innerHTML = 'Click on a region for a list of trees';
 		clearTable();
@@ -187,13 +189,22 @@ function onEachFeature(feature, layer) {
 	});
 }
 
-// === Add location data to map
+// === Add, change location data on map
 
-var geojson;
-geojson = L.geoJson(locsData, {
-	style: defaultStyle,
-	onEachFeature: onEachFeature
-}).addTo(map);
+function loadRegion(region) {
+	regionData = window['locsData_' + region];
+	regionLayer = L.geoJson(regionData, {
+		style: defaultStyle,
+		onEachFeature: onEachFeature
+	});
+	regionLayer.addTo(map);	
+	map.setView([window['mapLat_' + region], window['mapLng_' + region]], window['mapZoom_' + region]);	
+};
+
+function changeRegion(region) {
+	map.removeLayer(regionLayer);
+	loadRegion(region);
+}
 
 // === Tree Range Layers and Events
 

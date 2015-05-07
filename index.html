@@ -43,20 +43,14 @@
 	
 	<script src="./js/leaflet.js"></script>
 	<script src="./js/jquery-1.11.2.min.js"></script>
-	<script type="text/javascript" src="./data_locs/states.js"></script>
+	<script type="text/javascript" src="./data_locs/allregions.js"></script>
 	<script type="text/javascript" src="./js/viz.js"></script>
 	
 	<script type="text/javascript">
-	  function reloadJs(src) {
-      $('script[src="./js/viz.js"]').remove();
-      $('<script>').attr('src', src).appendTo('head');
-    }
-		
-    function loadRegion(region) {
-      destroyMap();
-      $.getScript("./data_locs/" + region + ".js");
-      reloadJs('./js/viz.js');
-    };
+	
+		$( document ).ready(function() {
+			loadRegion('states');
+		});
 		
 		function showHelp() {
 			document.getElementById('help').setAttribute('style', 'display:block;');
