@@ -8,26 +8,27 @@ import treeranges
 import json
 
 
-def write_to_js(locs_data, fname, js_var_name, additional_vars=[]):
+def write_to_js(locs_data, fname, suffix, js_var_name, additional_vars=[]):
     """ Writes data in locs to .js file.
     
     Assuming inputs:
     - js_var_name = "locsData"
     - additional_vars = [('firstVar', {'a': '1'}), ('secondVar', {'b': '2'})]
+    - suffix = "_ne"
     
     Output will look like:
-    var firstVar = {'a': '1'};
-    var secondVar = {'b': '2']};
-    var locsData = ...;
+    var firstVar_ne = {'a': '1'};
+    var secondVar_ne = {'b': '2']};
+    var locsData_ne = ...;
     """
     data_var = [(js_var_name, { "type" : "FeatureCollection", "features" : locs_data })]
     all_vars = additional_vars + data_var
-    full_str = "\n".join(["var " + varName + " = " + json.dumps(varData) + ";" for varName, varData in all_vars])
+    full_str = "\n".join(["var " + varName + "_" + suffix + " = " + json.dumps(varData) + ";" for varName, varData in all_vars])
     with open(fname, 'w') as f:
         f.write(full_str)
 
     return True
-
+    
     
 if __name__ == "__main__":
     
