@@ -13,7 +13,10 @@ STATE_FILTERS = {
     'ne' : ["09", "23", "25", "33", "36", "44", "50"],
     'ma' : ["36", "42", "34", "10", "24"],
     'ca' : ["06"],
-    'ny' : ["36"]
+    'ny' : ["36"],
+    'tx' : ["48"],
+    'west' : ["04", "06", "08", "16", "20", "27", "30", "31", "32", "35", "38", "40", "41", "46", "48", "49", "53", "56"],
+    'east' : ["01", "05", "09", "10", "12", "13", "17", "18", "19", "21", "22", "23", "24", "25", "26", "28", "29", "33", "34", "36", "37", "39", "42", "44", "45", "47", "50", "51", "54", "55"]
 }
 TOWN_UNIQID_FNS = {
     'ct' : lambda x: '%s, CT' % x['TNA'],
@@ -22,7 +25,9 @@ TOWN_UNIQID_FNS = {
     'nh' : lambda x: '%s, NH' % x['NAME'],
     'ny' : lambda x: str(x['LABEL']) + ' (' + str(x['SWIS']) + '), NY',
     'ri' : lambda x: '%s, RI' % x['NAME'],
-    'vt' : lambda x: '%s, VT' % x['TOWNNAME']
+    'vt' : lambda x: '%s, VT' % x['TOWNNAME'],
+    'nj' : lambda x: '%s, NJ' % x['MUN'],
+    'fl' : lambda x: '%s, FL' % x['NAME']
 }
 
 def load_location_data_from_file(fname, uniqid_fn):

@@ -29,6 +29,27 @@ def gen_color_map(locs_stats):
     hue_map = lambda avg_coverage: interp(avg_coverage, avg_coverage_min, avg_coverage_max, hues_min, hues_max)
     
     color_map = lambda n_trees, avg_coverage: hsv_to_hex(hue_map(avg_coverage), sat_map(n_trees), 1.0)
+    return color_map
+    
+
+def test_color_map():
+    """ Generates color breaks for n_trees of 1 through 100 (sats) and avg_coverage 0.01 through 0.99 (hues) """
+    
+    interp = lambda x, x_min, x_max, y_min, y_max: (0.0 + x - x_min)/(x_max - x_min) * (y_max - y_min) + y_min
+    
+    sats_min = 0.1
+    sats_max = 1.0
+    n_trees_min = 1
+    n_trees_max = 100
+    sat_map = lambda n_trees: interp(n_trees, n_trees_min, n_trees_max, sats_min, sats_max)
+    
+    hues_min = 0.67
+    hues_max = 0.99
+    avg_coverage_min = 0.01
+    avg_coverage_max = 0.99
+    hue_map = lambda avg_coverage: interp(avg_coverage, avg_coverage_min, avg_coverage_max, hues_min, hues_max)
+    
+    color_map = lambda n_trees, avg_coverage: hsv_to_hex(hue_map(avg_coverage), sat_map(n_trees), 1.0)
     return color_map    
 
 
@@ -54,12 +75,12 @@ def map_view(locs_tag, locs_filter):
         res = (44, -74, 6)
     elif locs_filter == "ca":
         res = (37.25, -120, 6)
-    elif locs_tag == "counties" and locs_filter == "ma":
-        res = (42, -76, 6)
-    elif locs_tag == "towns" and locs_filter == "ma":
+    elif locs_filter == "ma":
         res = (42, -72, 8)
     elif locs_filter == "ny":
         res = (42.9, -76, 7)
+    elif locs_filter == "tx":
+        res = (30, -84, 6)
     elif locs_filter == "me":
         res = (45.5, -70, 7)
     elif locs_filter == "ct":
@@ -101,3 +122,11 @@ def map_vars(locs_tag, locs_filter=False):
     map_vars = zip(['mapLat', 'mapLng', 'mapZoom'], view) + [('mapTitle', title)]
     return map_vars    
     
+    
+if __name__ == "__main__":
+    
+    color_map = test_color_map()
+    for n_trees in [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]:
+        for avg_coverage in [0.5]:
+            print "<i style=\"background:" + str(color_map(n_trees, avg_coverage)) + "\">&nbsp; &nbsp;</i>"
+            

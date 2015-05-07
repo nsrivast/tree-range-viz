@@ -91,7 +91,8 @@ def add_stats_to_locs(locs_data, stats):
             'Description': description, 
             'ShortDescription': short_description, 
             'Color' : color, 
-            'TreeTable' : tree_table 
+            'TreeTable' : tree_table,
+            'title': description
         }
     
     return locs_data_withstats
