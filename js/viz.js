@@ -154,11 +154,12 @@ var lastSelected;
 
 function selectFeature(e) {
 	var layer = e.target;
-	if (!layer.options.selected) {
+	if (!layer.feature.selected) {
 		if (typeof lastSelected !== 'undefined') {
 			lastSelected.setStyle(unselectedStyle());
 		}
 		layer.setStyle(selectedStyle());
+		layer.feature.selected = true;
 		lastSelected = layer;
 
 		if (!L.Browser.ie && !L.Browser.opera) { 
@@ -171,6 +172,7 @@ function selectFeature(e) {
 	} else {
 		regionLayer.resetStyle(e.target);
 		layer.setStyle(unselectedStyle());
+		layer.feature.selected = false;
 		treeTableHeader.innerHTML = 'Click on a region for a list of trees';
 		clearTable();
 	}
