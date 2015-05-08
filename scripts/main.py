@@ -13,7 +13,7 @@ UNIQIDS_TO_FILTER = ['Cecil (015)', "Barnstable (001)", "None, CT", "CHILMARK, M
 UNIQIDS_TO_FILTER += ['IsleAuHaut, ME', 'VinalHaven, ME', 'SwansIsland, ME', 'Breman, ME', 'MatinicusIslePlt, ME', 'NorthHaven, ME', 'WinterHarbor, ME', 'StGeorge, ME', 'CranberryIsles, ME', 'Arrowsic, ME', 'MonheganPlt, ME', 'Friendship, ME', 'Southport, ME', 'BoothbayHarbor, ME', 'Beals, ME', 'Cushing, ME', 'SouthBristol, ME', 'DeerIsle, ME', 'Harrington, ME', 'Cutler, ME', 'Kittery, ME', 'WestBath, ME', 'Frenchboro, ME']
 UNIQIDS_TO_FILTER += ['Ocean Beach (472803), NY', 'Saltaire (472805), NY', 'Manor Haven (282221), NY', 'Manhattan (620000), NY', 'Kings (610000), NY', 'Hewlett Harbor (282017), NY', 'Long Beach (281000), NY', 'Brookhaven (472200), NY', 'Bronx (600000), NY', 'Hewlett Neck (282019), NY', 'Westhamp Beach (473607), NY', 'Quogue (473603), NY', 'Baxter Estates (282201), NY', 'Poquott (472209), NY', 'Croton-On-Hud (552203), NY']
 UNIQIDS_TO_FILTER += ['Upper Nyack (392001), NY', 'Henderson (223600), NY', 'Waddington (408201), NY', 'Alexandria Bay (222201), NY', 'Morristown (406001), NY', 'Clayton (223200), NY', 'Barker (293801), NY', 'Huron (542600), NY', 'Fair Haven (55601), NY', 'Wilson (294201), NY', 'Waddington (408200), NY', 'Somerset (293800), NY', 'Ogdensburg (401200), NY', 'Cape Vincent (222801), NY', 'Sodus Point (544203), NY', 'Louisville (405200), NY', 'Clayton (223201), NY', 'Massena (405800), NY']
-#UNIQIDS_TO_FILTER += ['BRIGANTINE CITY, NJ', 'BEACH HAVEN BORO, NJ', 'LONG BEACH TWP, NJ', 'SHIP BOTTOM BORO, NJ', 'SURF CITY BORO, NJ', 'HARVEY CEDARS BORO, NJ', 'BARNEGAT LIGHT BORO, NJ', 'SEASIDE PARK BORO, NJ', 'SEASIDE HEIGHTS BORO, NJ', 'MANTOLOKING BORO, NJ', 'HIGHLANDS BORO, NJ', 'LONGPORT BORO, NJ', 'LAVALLETTE BORO, NJ']
+#UNIQIDS_TO_FILTER += ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'West Virginia', 'Wisconsin', 'Wyoming']
 
 def filter_out_uniqids(locs_data, locs_trees, uniqids):
     ''' Removes locations by UNIQID from data files and intersection results '''
@@ -38,7 +38,6 @@ def rewrite_js(locs_tag, trees_tag, locs_filter=False):
     trees_locs, locs_trees = intersections.calc_or_load_intersections(locs_tag, trees_tag, locs_filter)
     locs_data, locs_trees = filter_out_uniqids(locs_data, locs_trees, UNIQIDS_TO_FILTER)
     
-
     print("- Calculating stats and map parameters, creating .js data")
     all_stats = stats.calc_stats(trees_locs, locs_trees)
     locs_data_withstats = stats.add_stats_to_locs(locs_data, all_stats)
@@ -48,19 +47,16 @@ def rewrite_js(locs_tag, trees_tag, locs_filter=False):
     fname = locs_tag + ("_" + locs_filter if locs_filter else "") + trees_tag
     map_js_fname = "../gh-pages/data_locs/" + fname + ".js"
     geojson.write_to_js(locs_data_withstats, map_js_fname, fname, "locsData", map_vars)
-
+    
+    
 
 if __name__ == "__main__":
     
     # Custom parameters
     if True:
         rewrite_js("states", "")
-#        rewrite_js("states", "", "ne")
         rewrite_js("counties", "")
-#        rewrite_js("counties", "", "ne")
-#        rewrite_js("counties", "", "ma")
         rewrite_js("counties", "", "ca")
-#        rewrite_js("counties", "", "ny")
         rewrite_js("towns", "", "ny")
         rewrite_js("towns", "", "me")
         rewrite_js("towns", "", "nh")
@@ -69,5 +65,5 @@ if __name__ == "__main__":
         rewrite_js("towns", "", "vt")
         
     else:
-        rewrite_js("counties", "", "tx")
+        rewrite_js("states", "", "")
         

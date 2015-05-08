@@ -4,7 +4,7 @@ In preparation for a series of section hikes of the Appalachian Trail, I wanted 
 
 The goal of this project was to create a data visualization to explore and examine the distribution of tree species across the US.
 
-Launch the [visualization] (http://nsrivast.github.io/tree-range-viz/), or read [an analysis of the results] (http://nsrivast.github.io/tree-range-viz/analysis.html). The rest of this README explains how I built the visualization, the data formats and libraries I used (shapefiles, geoJSON, Shapely for Python, Leaflet), and the analysis and design choices I made along the way. 
+Launch the [visualization] (http://nsrivast.github.io/tree-range-viz/), or read [an exploration of the results] (http://nsrivast.github.io/tree-range-viz/analysis.html). The rest of this README explains how I built the visualization, the data formats and libraries I used (shapefiles, geoJSON, Shapely for Python, Leaflet), and the analysis and design choices I made along the way. 
 
 ### Outline
 
