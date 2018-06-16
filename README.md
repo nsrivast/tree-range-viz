@@ -1,6 +1,10 @@
 ## Tree Range Visualization
 
-In preparation for a series of section hikes of the Appalachian Trail, I wanted to familiarize myself with the tree species I would encounter along the way. I found resources listing plants common to specific regions, such as Wikipedia pages for local parks and forests, but no central resource that answered the question: which trees are prevalent in a given area of the country?
+Before hiking a section of the Appalachian Trail, I found myself wondering: which of the trees in a particular area are most unique/distinctive?
+
+After a wonderful journey through dendrology, shapefiles, and choropleths, the result:
+
+![tree range visualization](https://github.com/nsrivast/tree-range-viz/blob/master/tree.png)
 
 The goal of this project was to create a data visualization to explore and examine the distribution of tree species across the US.
 
